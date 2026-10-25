@@ -1,0 +1,43 @@
+<!DOCTYPE html> <html lang="pt-PT"> <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Iniciar sessão | PW VIP</title>
+<style>
+body {
+margin: 0;
+min-height: 100vh;
+display: flex;
+justify-content: center; align-items: center; background: #10091b; color: white;
+font-family: Arial, sans-serif;
+}
+.caixa {
+width: 300px;
+padding: 30px;
+text-align: center; background: #1d1230; border: 1px solid #7138d8; border-radius: 18px;
+}
+h1 { color: #bd91ff; }
+input, button { box-sizing: border-box; width: 100%;
+padding: 12px; margin-top: 14px; border-radius: 8px; font-size: 15px;
+}
+input {
+background: #10091b; color: white;
+border: 1px solid #65428b;
+}
+button {
+background: #7138d8; color: white;
+border: none;
+cursor: pointer; }
+a { color: #bd91ff; } </style>
+</head> <body>
+<div class="caixa">
+<h1> PW VIP</h1> <h2>Iniciar sessão</h2> <p>Entra na tua conta VIP.</p>
+<form id="login">
+<input type="email" placeholder="O teu email" required>
+<input type="password" placeholder="A tua palavra-passe" required> <button type="submit">Iniciar sessão →</button>
+</form>
+<p><a href="registo.html">Criar conta</a></p>
+<p><a href="index.html">Voltar ao início</a></p> </div>
+<script>
+document.getElementById("login").addEventListener("submit", function(event) {
+event.preventDefault();
+alert("A autenticação ainda não está ligada. Vamos implementá-la!"); });
+</script> </body> </html>
