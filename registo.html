@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Registo VIP | PW-VIP</title>
+  <title>Criar conta VIP | PW-VIP</title>
 
   <style>
     * {
@@ -13,10 +13,10 @@
     body {
       margin: 0;
       min-height: 100vh;
+      padding: 24px;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 24px;
       font-family: Arial, sans-serif;
       color: white;
       background: linear-gradient(135deg, #090612, #24103d, #10091c);
@@ -26,38 +26,39 @@
       width: 100%;
       max-width: 430px;
       padding: 32px 25px;
-      background: rgba(25, 14, 40, 0.96);
+      background: #190e28;
       border: 1px solid #7544a5;
       border-radius: 20px;
-      box-shadow: 0 0 35px rgba(139, 63, 219, 0.2);
-      text-align: center;
+      box-shadow: 0 0 35px #8b3fdb33;
     }
 
     .coroa {
       font-size: 48px;
-      margin-bottom: 8px;
+      text-align: center;
     }
 
     h1 {
       color: #d8b4ff;
-      margin: 8px 0;
+      text-align: center;
+      margin: 10px 0;
     }
 
     .subtitulo {
       color: #c8bdd6;
+      text-align: center;
       margin-bottom: 25px;
       line-height: 1.5;
     }
 
     label {
       display: block;
-      text-align: left;
       margin: 16px 0 7px;
       color: #e4d3f7;
       font-size: 14px;
     }
 
     input {
+      display: block;
       width: 100%;
       padding: 13px;
       border: 1px solid #67418a;
@@ -65,26 +66,17 @@
       background: #120b1d;
       color: white;
       font-size: 16px;
-      outline: none;
     }
 
     input:focus {
-      border-color: #c084fc;
-      box-shadow: 0 0 0 2px rgba(192, 132, 252, 0.15);
-    }
-
-    .explicacao {
-      display: block;
-      text-align: left;
-      margin-top: 18px;
-      color: #60a5fa;
-      text-decoration: underline;
+      outline: 2px solid #a78bfa;
+      outline-offset: 1px;
     }
 
     button {
       width: 100%;
-      margin-top: 24px;
       padding: 14px;
+      margin-top: 20px;
       border: none;
       border-radius: 10px;
       background: #8b5cf6;
@@ -94,20 +86,43 @@
       cursor: pointer;
     }
 
-    button:hover {
+    button:hover:not(:disabled) {
       background: #a78bfa;
     }
 
+    button:disabled {
+      background: #514363;
+      color: #c5b9d3;
+      cursor: not-allowed;
+      opacity: 0.7;
+    }
+
+    #mensagem {
+      margin-top: 14px;
+      font-size: 14px;
+      line-height: 1.5;
+      text-align: center;
+      color: #fca5a5;
+    }
+
+    .explicacao {
+      display: block;
+      margin-top: 18px;
+      color: #60a5fa;
+    }
+
     .nota {
+      margin-top: 18px;
       color: #b8a9c9;
       font-size: 12px;
       line-height: 1.5;
-      margin-top: 18px;
+      text-align: center;
     }
 
     .voltar {
-      display: inline-block;
+      display: block;
       margin-top: 20px;
+      text-align: center;
       color: #d8b4ff;
       text-decoration: none;
     }
@@ -118,75 +133,107 @@
   <main class="card">
     <div class="coroa">👑</div>
 
-    <h1>Registo VIP</h1>
-    <p class="subtitulo">Cria a tua conta VIP na PW-VIP.</p>
+    <h1>Criar conta VIP</h1>
+    <p class="subtitulo">
+      Cria a tua conta e confirma o teu email.
+    </p>
 
     <form id="registoForm">
-      <label for="email">Endereço de email</label>
-      <input
-        id="email"
-        name="email"
-        type="email"
-        placeholder="O teu email"
-        autocomplete="email"
-        required
-      >
-
-      <label for="codigo">Código de verificação</label>
-      <input
-        id="codigo"
-        name="codigo"
-        type="text"
-        placeholder="Código recebido por email"
-        autocomplete="one-time-code"
-        required
-      >
-
       <label for="username">Nome de utilizador</label>
       <input
         id="username"
         name="username"
         type="text"
-        placeholder="Escolhe um nome"
+        placeholder="Escolhe o teu nome"
         autocomplete="username"
         minlength="3"
         maxlength="20"
         required
       >
 
-      <label for="password">Palavra-passe da conta PW-VIP</label>
+      <label for="email">Email</label>
+      <input
+        id="email"
+        name="email"
+        type="email"
+        placeholder="O teu endereço de email"
+        autocomplete="email"
+        required
+      >
+
+      <label for="password">Palavra-passe da conta</label>
       <input
         id="password"
         name="password"
         type="password"
-        placeholder="Cria uma palavra-passe"
+        placeholder="Cria a tua palavra-passe"
         autocomplete="new-password"
         minlength="8"
         required
       >
 
-      <a
-        class="explicacao"
-        href="https://1drv.ms/w/c/BFA0B1132C5FB88E/IQAb8BFH1GecQozb-wrHaTvXAQsEHebj_FT3d9N922ZlspM?e=JbeAFn"
-        target="_blank"
-        rel="noopener noreferrer"
-      >Explicação</a>
+      <button id="enviarCodigo" type="button">
+        Enviar código para o email
+      </button>
 
-      <button type="submit">Continuar →</button>
+      <label for="codigo">Código de verificação</label>
+      <input
+        id="codigo"
+        name="codigo"
+        type="text"
+        placeholder="Introduz o código recebido"
+        autocomplete="one-time-code"
+        inputmode="numeric"
+        disabled
+        required
+      >
+
+      <button id="continuar" type="submit" disabled>
+        Continuar →
+      </button>
+
+      <p id="mensagem" role="status" aria-live="polite"></p>
     </form>
 
+    <a
+      class="explicacao"
+      href="https://1drv.ms/w/c/BFA0B1132C5FB88E/IQAb8BFH1GecQozb-wrHaTvXAQsEHebj_FT3d9N922ZlspM?e=JbeAFn"
+      target="_blank"
+      rel="noopener noreferrer"
+    >Explicação</a>
+
     <p class="nota">
-      A palavra-passe é para a tua conta PW-VIP, não para a tua conta de email.
+      Os teus dados serão usados para criar a tua conta PW-VIP.
     </p>
 
     <a class="voltar" href="index.html">← Voltar ao início</a>
   </main>
 
   <script>
-    document.getElementById("registoForm").addEventListener("submit", function(event) {
+    const form = document.getElementById("registoForm");
+    const enviarCodigo = document.getElementById("enviarCodigo");
+    const codigo = document.getElementById("codigo");
+    const continuar = document.getElementById("continuar");
+    const mensagem = document.getElementById("mensagem");
+
+    enviarCodigo.addEventListener("click", () => {
+      if (!form.reportValidity()) return;
+
+      mensagem.textContent =
+        "O formulário visual está pronto. Falta ligar o envio do código ao Supabase.";
+    });
+
+    codigo.addEventListener("input", () => {
+      continuar.disabled = true;
+      mensagem.textContent =
+        "O código ainda não foi verificado.";
+    });
+
+    form.addEventListener("submit", (event) => {
       event.preventDefault();
 
-      alert("O formulário visual está pronto! Falta ligar a verificação de email e a criação da conta.");
+      mensagem.textContent =
+        "Falta ligar a verificação real do código e a criação da conta ao Supabase.";
     });
   </script>
 </body>
